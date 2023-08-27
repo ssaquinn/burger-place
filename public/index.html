@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<!--Meta informatioin - linked external styles sheet, external libraries: Timepicker/css, google fonts, modals/css  -->
+<html lang="en-NZ" dir="ltr">
+  <head>
+    <title>Burger Place Online Order Form</title>
+    <meta charset="UFT-8" />
+    <meta name="viewport" content="Width=device-width, initial scale=1" />
+    <meta
+      name="description"
+      content="An order form for the Burger Place restuarant"
+    />
+    <link rel="Stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:ital,wght@0,300;1,300;1,500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css"
+    />
+  </head>
+
+  <body>
+    <!-- Brand panel at the top of the document used to identify company-->
+    <div class="BrandPanel">
+      <header>
+        <h1 class="lobster">Burger Place</h1>
+      </header>
+    </div>
+    <!-- Main area is the left of the document instructions are set to appear in order in javascript-->
+
+    <div class="BoxPosition">
+      <div class="MainArea">
+        <main>
+          <div id="instructionBox">
+            <div id="deliveryType" class="customerInstruction">
+              <p class="mainText">Please select delivery type:</p>
+            </div>
+            <div id="customerDetails" class="customerInstruction">
+              <p class="mainText">Please enter customer details:</p>
+            </div>
+            <div id="deliveryTime" class="customerInstruction">
+              <p class="mainText">Please set delivery time:</p>
+            </div>
+            <div id="orderSelection" class="customerInstruction">
+              <p class="mainText">Select your burger:</p>
+            </div>
+          </div>
+          <!-- Menu items, come with pictures and auto counter to select, each has a custom button which activates a modal, 
+  modals are set disabled until activated at correct time in javascript, Burger details are not visable in mobile 
+version so as not to confuse the user with too much detail.-->
+
+          <div class="foodOrder">
+            <!--"Classic Burger"-->
+            <div class="burgerDetails">
+              <h4><b>Classic Burger</b></h4>
+              <img
+                src="../Pictures/Classic.jpg"
+                alt="Classic Burger"
+                width="200"
+                height="auto"
+              />
+              <p><b>$17.99</b></p>
+              <p><i>Beef patty, Swiss cheese, Tomato</i></p>
+              <label for="classic">Select</label>
+              <input
+                class="countBurger"
+                type="number"
+                id="classic"
+                name="quantity"
+                min="0"
+                max="10"
+              />
+              <button disabled class="customBut" id="customCL">Custom</button>
+            </div>
+            <!--Chicken burger-->
+            <div class="burgerDetails">
+              <h4><b>Chicken Burger</b></h4>
+              <img
+                src="../Pictures/chicken.jpg"
+                alt="Chicken Burger"
+                width="200"
+                height="auto"
+              />
+              <p><b>$15.99</b></p>
+              <p><i>Chicken patty, Swiss cheese, Tomato</i></p>
+              <label for="chicken">Select</label>
+              <input
+                class="countBurger"
+                type="number"
+                id="chicken"
+                name="quantity"
+                min="0"
+                max="10"
+              />
+              <button disabled class="customBut" id="customCH">Custom</button>
+            </div>
+            <!--Hawaian Burger-->
+            <div class="burgerDetails">
+              <h4><b>Hawaian Burger</b></h4>
+              <img
+                src="../Pictures/Hawaian.jpg"
+                alt="Hawaian Burger"
+                width="200"
+                height="auto"
+              />
+              <p><b>$13.99</b></p>
+              <p><i>Beef patty, Pinapple, Swiss cheese, Tomato</i></p>
+              <label for="hawaian">Select</label>
+              <input
+                class="countBurger"
+                type="number"
+                id="hawaian"
+                name="quantity"
+                min="0"
+                max="10"
+              />
+              <button disabled class="customBut" id="customHA">Custom</button>
+            </div>
+          </div>
+        </main>
+      </div>
+      <!-- the "orderside" area of the page is a box set to the right (or at the bottom in mobile) which takes and displays
+customers details. Each detail/button is disabled until the correct details have been given in order. This is to 
+ensure for example: the customer has given a delivery address before confirming the order. Alert messages are given if 
+the customer does not fill out the required field. Once a delivery detail has been set, it can be changed say for example if 
+the customer wants to change the delivery type-->
+
+      <div class="Orderside">
+        <aside>
+          <!--Delivery Type-->
+          <h2 class="lobster">Order:</h2>
+          <button id="deliveryYes">Delivery</button
+          ><button id="pickUp">Pick-up</button>
+          <!--Customer Details-->
+          <h3>Customer details</h3>
+          <div class="inputGroup">
+            <label>Name:</label>
+            <input type="text" placeholder="Name" id="customerName" disabled />
+          </div>
+          <div class="inputGroup">
+            <label>Phone:</label>
+            <input
+              type="phone"
+              placeholder="Phone"
+              id="customerPhone"
+              disabled
+            />
+          </div>
+          <div class="inputGroup">
+            <label>Address:</label>
+            <input
+              type="address"
+              placeholder="address"
+              id="customerAddress"
+              disabled
+            />
+          </div>
+          <div class="alignButtonRight">
+            <button id="customerDetailsBox" disabled>Confirm</button>
+          </div>
+          <!--Delivery Time-->
+          <h3>Delivery/Pick-up Time:</h3>
+          <input id="setTime" />
+          <div class="alignButtonRight">
+            <button id="deliveryTimeBox" disabled>Confirm</button>
+          </div>
+          <!-- Order Display on the Aside, this is where the order items, number, cost and total price are displayed. it is updated as
+          the customer makes changes. The customer clicks the "place order button" once all details have been entered and the customer is
+        happy with their selection-->
+
+          <h3>Order Details:</h3>
+          <div id="orderDisplay">
+            <p id="classicDisplay"></p>
+            <p id="clxChDisplay" class="extraFormat"></p>
+            <p id="clxMDisplay" class="extraFormat"></p>
+            <p id="chickenDisplay"></p>
+            <p id="chxChDisplay" class="extraFormat"></p>
+            <p id="chxMDisplay" class="extraFormat"></p>
+            <p id="hawaianDisplay"></p>
+            <p id="haxChDisplay" class="extraFormat"></p>
+            <p id="haxMDisplay" class="extraFormat"></p>
+            <p id="totalDisplay"></p>
+          </div>
+          <div class="alignButtonRight">
+            <button id="orderSelectionBox" disabled>Place Order</button>
+          </div>
+        </aside>
+      </div>
+      <!--MODALS: we have a total of 5 modals. The first 3 appear by clicking the "custom" button by each burger, the next one appears 
+      after the 'confirm order' button has been clicked - it then asked the customer to review order and customer details the click "confirm" - 
+    once this has been clicked the last modal will appear confirming the order and giving an order number and delivery time-->
+    </div>
+    <!--MODAL:CUSTOM:CLASSIC - updates extra info in the aside and the final modal, only appears if 1+ burgers have been selected, can 
+    only give extras corresponding to the amount of burgers selected.-->
+    <div id="modalCL" class="modal">
+      <p>Extras:</p>
+      <label for="classicCheese">Extra cheese</label>
+      <input
+        class="countBurger"
+        type="number"
+        id="classicCheese"
+        name="quantity"
+        min="0"
+        max="0"
+      />
+      <label for="classicMeat">Extra Meat</label>
+      <input
+        class="countBurger"
+        type="number"
+        id="classicMeat"
+        name="quantity"
+        min="0"
+        max="0"
+      />
+      <a href="#" rel="modal:close" class="buttDesign">Done</a>
+    </div>
+    <!--MODAL:CUSTOM:Chicken - updates extra info in the aside and the final modal, only appears if 1+ burgers have been selected, can 
+    only give extras corresponding to the amount of burgers selected.-->
+    <div id="modalCH" class="modal">
+      <p>Extras:</p>
+      <label for="chickenCheese">Extra Cheese</label>
+      <input
+        class="countBurger"
+        type="number"
+        id="chickenCheese"
+        name="quantity"
+        min="0"
+        max="0"
+      />
+      <label for="chickenMeat">Extra Meat</label>
+      <input
+        class="countBurger"
+        type="number"
+        id="chickenMeat"
+        name="quantity"
+        min="0"
+        max="0"
+      />
+      <a href="#" rel="modal:close" class="buttDesign">Done</a>
+    </div>
+    <!--MODAL:CUSTOM:Hawaiain - updates extra info in the aside and the final modal, only appears if 1+ burgers have been selected, can 
+    only give extras corresponding to the amount of burgers selected.-->
+    <div id="modalHA" class="modal">
+      <p>Extras:</p>
+      <label for="hawaianCheese">Extra Cheese</label>
+      <input
+        class="countBurger"
+        type="number"
+        id="hawaianCheese"
+        name="quantity"
+        min="0"
+        max="0"
+      />
+      <label for="hawaianMeat">Extra Meat</label>
+      <input
+        class="countBurger"
+        type="number"
+        id="hawaianMeat"
+        name="quantity"
+        min="0"
+        max="0"
+      />
+      <a href="#" rel="modal:close" class="buttDesign">Done</a>
+    </div>
+    <!--Modal: RECORD : Final order display, displays customer and order information back to customer for the final confirmation. Once "confirm" is 
+  selected the final modal appears-->
+
+    <div id="record" class="modal">
+      <!--Customer Details-->
+      <div>
+        <h4 class="center">Customer Details</h4>
+        <p class="orderAlign">
+          <span><b>Delivery Type:</b></span> <span id="deliveryRecord"></span>
+        </p>
+        <p class="orderAlign">
+          <span><b>Customer Name:</b></span> <span id="nameRecord"></span>
+        </p>
+        <p class="orderAlign">
+          <span><b>Customer Phone Number:</b></span>
+          <span id="phoneRecord"></span>
+        </p>
+        <p class="orderAlign">
+          <span><b>Delivery Address:</b></span> <span id="addressRecord"></span>
+        </p>
+        <p class="orderAlign">
+          <span><b>Delivery/Pick-up Time:</b></span>
+          <span id="timeRecord"></span>
+        </p>
+      </div>
+      <!--Order Confirmed on the Modal-->
+      <h4>Order</h4>
+      <div>
+        <p><span id="classicRecord" class="burgerDisplay"></span></p>
+        <p>
+          <span id="clxChRecord" class="burgerDisplay extraFormat"></span>
+        </p>
+        <p>
+          <span id="clxMRecord" class="burgerDisplay extraFormat" ]></span>
+        </p>
+        <p><span id="chickenRecord" class="burgerDisplay"></span></p>
+        <p>
+          <span id="chxChRecord" class="burgerDisplay extraFormat"></span>
+        </p>
+        <p>
+          <span id="chxMRecord" class="burgerDisplay extraFormat"></span>
+        </p>
+        <p><span id="hawaianRecord" class="burgerDisplay"></span></p>
+        <p>
+          <span id="haxChRecord" class="burgerDisplay extraFormat"></span>
+        </p>
+        <p>
+          <span id="haxMRecord" class="burgerDisplay extraFormat"></span>
+        </p>
+        <p><span id="totalRecord" class="burgerDisplay"></span></p>
+      </div>
+
+      <h4>Please confirm your order details</h4>
+
+      <a href="#confirmationModal" rel="modal:open" class="buttDesign"
+        >Confirm</a
+      >
+    </div>
+    <!--MODAL - Final Modal - Confirming order has been placed and will be made/delivered. Once "close" is selected, the entire page refreshes-->
+    <div id="confirmationModal" class="modal center">
+      <h4>Your order is confirmed</h4>
+      <p>Order number: #558645</p>
+      <p>Delivery/Pick-up time: <span id="modalTime"></span></p>
+      <p>Thank you for your order</p>
+      <a href="/Index.html" class="buttDesign">Close</a>
+    </div>
+    <!-- Scripts and libraries: Jquery, jquerytimepicker, jquerymodal, javascript file-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <script src="../scripts.js"></script>
+  </body>
+</html>

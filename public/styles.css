@@ -1,0 +1,274 @@
+/*BASE STYLES*/
+body {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
+
+/*TYPOGRAPHY*/
+
+h1 {
+    font-size: 1.5em;
+}
+
+h3 {
+    font-style: italic;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 300;
+    margin-top: 1px;
+}
+
+i {
+    font-size: 10px;
+    height: 80px;
+}
+
+.mainText {
+    font-style: italic;
+}
+
+.lobster {
+    font-family: 'Lobster', cursive;
+}
+
+/*BUTTONS*/
+
+.buttDesign {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-style: italic;
+    border-width: 2px;
+    border-radius: 5px;
+    padding: 7px;
+    margin: 10px;
+    border-color: black;
+    border-style: solid;
+    color: black;
+    text-decoration: none;
+    width: fit-content;
+
+}
+
+button {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-style: italic;
+    border-width: 2px;
+    border-radius: 5px;
+    padding: 7px;
+    margin: 10px;
+}
+
+.alignButtonRight {
+    display: flex;
+    justify-content: right;
+}
+
+
+/*FORMS*/
+label {
+    text-align: left;
+    font-size: 10px;
+    font-style: italic;
+}
+
+input {
+    margin-top: 5px;
+
+}
+
+.inputGroup {
+    display: flex;
+    align-items: center;
+    align-items: baseline;
+    justify-content: space-around;
+}
+
+/*UTILITIES*/
+
+.center {
+    text-align: center !important;
+}
+
+
+
+
+/*COMPONENTS-BASE*/
+
+aside {
+    padding: 20px;
+    border-width: 2px;
+    border-radius: 5px;
+    flex-wrap: wrap;
+}
+
+
+/*COMPONENTS-CLASS*/
+
+
+.Orderside {
+    position: relative;
+    bottom: 0px;
+    max-width: 100%;
+    border-width: 2px;
+    border-radius: 5px;
+    flex-wrap: wrap;
+
+}
+
+.BrandPanel {
+    width: 100%;
+}
+
+.foodOrder {
+    flex-wrap: wrap;
+    display: none;
+    justify-content: space-evenly;
+}
+
+
+.OrderAlign {
+    justify-content: space-between;
+}
+
+.extraFormat {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    padding-left: 50px;
+    margin: 2px;
+}
+
+.burgerDisplay {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+}
+
+.burgerDetails {
+    width: 250px;
+    margin: 15px;
+}
+
+.quantity {
+    width: 25%;
+}
+
+.cost {
+    width: 30%;
+}
+
+/* COMPONENTS -IDs*/
+
+#customerDetails {
+    display: none;
+}
+
+#deliveryTime {
+    display: none;
+}
+
+#orderSelection {
+    display: none;
+}
+
+#classicDisplay {
+    display: flex;
+    justify-content: space-between;
+}
+
+#chickenDisplay {
+    display: flex;
+    justify-content: space-between;
+}
+
+#hawaianDisplay {
+    display: flex;
+    justify-content: space-between;
+}
+
+#totalDisplay {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid black;
+    font-weight: bold;
+}
+
+
+
+
+/*Responsive Web Design - Mobile First, largest viewport width found:480px. 
+App tested at a minimum viewport width size of 320X568px */
+@media only screen and (min-width:481px) {
+
+    /*RESPONSIVE-DESIGN:BASE STYLES*/
+    body {
+        min-height: 100vh;
+    }
+
+    /*RESPONSIVE-DESIGN:TYPOGRAPHY*/
+    h1 {
+        font-size: 3em;
+    }
+
+    /*RESPONSIVE-DESIGN: COMPONENTS:BASE*/
+    aside {
+        padding: 20px;
+        border-width: 2px;
+        border-radius: 5px;
+        flex-wrap: wrap;
+    }
+
+    /*RESPONSIVE-DESIGN: COMPONENTS: CLASS*/
+
+    .Orderside {
+        min-height: 75vh;
+        position: relative;
+        width: 33%;
+        right: 0px;
+        bottom: 60%;
+        text-align: center;
+        border-style: solid;
+        max-width: 30%;
+        border-color: black;
+        border-width: 2px;
+        border-radius: 5px;
+        flex-wrap: wrap;
+
+    }
+
+    .foodOrder {
+        margin-top: 50px;
+    }
+
+    .MainArea {
+        width: 66%;
+        text-align: center;
+
+    }
+
+    .BrandPanel {
+        padding: 5px;
+    }
+
+    .BoxPosition {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    /*RESPONSIVE-DESIGN: COMPONENTS: IDS*/
+
+    #instructionBox {
+        margin-top: 50px;
+    }
+
+    #instructionBox p {
+        font-size: 25px;
+        padding-right: 30px;
+        text-align: right;
+    }
+
+    #orderSelection p {
+        text-align: center;
+    }
+}
